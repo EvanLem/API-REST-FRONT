@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {TableauComponent} from './tableau/tableau.component';
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent],
+  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -30,4 +31,6 @@ export class AppComponent {
         console.error('Error fetching user:', error);
       });
   }
+
+  protected readonly TableauComponent = TableauComponent;
 }

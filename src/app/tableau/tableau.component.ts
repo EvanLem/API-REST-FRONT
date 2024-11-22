@@ -1,31 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {NgForOf} from '@angular/common';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {Utilisateur} from '../model/utilisateur.model';
+import {UtilisateurService} from '../service/utilisateur.service';
 
 @Component({
   selector: 'app-tableau',
   standalone: true,
   imports: [
-    NgForOf
+    MatTableModule
   ],
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.css']
 })
 export class TableauComponent implements OnInit {
-  users: any[] = [];
+  users!: MatTableDataSource<Utilisateur>;
+  columnsToDisplay = ['nom', 'prenom', 'mail', 'username'];
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly userService: UtilisateurService ) {}
 
   ngOnInit() {
     this.fetchUsers();
   }
 
   fetchUsers() {
-    this.http.get<any[]>('http://localhost:8080/api/user')
-      .subscribe(data => {
-        this.users = data;
-      }, error => {
-        console.error('Error fetching users:', error);
+    this.userService.get_utilisateurs().subscribe(data => {
+        this.users = new MatTableDataSource(data);
       });
   }
 }
