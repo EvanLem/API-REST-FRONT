@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    this.http.get(`http://localhost:8080/api/utilisateurs/${this.id}`)
+    this.http.get(`http://localhost:8080/api/user/${this.id}`)
       .subscribe(response => {
         console.log(response);
         //write response into p tag of id "answer"

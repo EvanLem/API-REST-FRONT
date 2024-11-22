@@ -11,7 +11,7 @@ import {Utilisateur} from '../model/utilisateur.model';
 export class UtilisateurService {
 
   API_URL = 'http://localhost:8080/api';
-  API_ENTITY_NAME = "utilisateur";
+  API_ENTITY_NAME = "user";
 
   constructor(private readonly http: HttpClient, private readonly toastrService: ToastrService) { }
 
