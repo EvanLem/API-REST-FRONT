@@ -24,7 +24,7 @@ export class TableauComponent implements OnInit {
 
   fetchUsers() {
     this.userService.get_utilisateurs().subscribe(data => {
-        this.users = new MatTableDataSource(data);
+      this.users = new MatTableDataSource(data);
       });
   }
 }

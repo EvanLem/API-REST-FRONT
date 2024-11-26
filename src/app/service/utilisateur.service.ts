@@ -20,7 +20,7 @@ export class UtilisateurService {
   }
 
   get_utilisateurs(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>(`${this.API_URL}/${this.API_ENTITY_NAME}/`);
+    return this.http.get<Utilisateur[]>(`${this.API_URL}/${this.API_ENTITY_NAME}`);
   }
 
   get_utilisateur(id: number): Observable<Utilisateur> {
