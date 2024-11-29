@@ -11,7 +11,7 @@ import {Jeux} from '../model/jeux.model';
 export class JeuxService {
 
   API_URL = 'http://localhost:8080/api';
-  API_ENTITY_NAME = "jeux";
+  API_ENTITY_NAME = "game";
 
   constructor(private readonly http: HttpClient, private readonly toastrService: ToastrService) { }
 

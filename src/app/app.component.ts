@@ -5,11 +5,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {TableauComponent} from './tableau/tableau.component';
 import {MatTableModule} from '@angular/material/table';
 import {UserFormComponent} from './user-form/user-form.component';
+import {MapComponent} from './map/map.component';
+import { MarkerService } from './service/marker.service';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule, UserFormComponent],
+  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule, UserFormComponent, MapComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
