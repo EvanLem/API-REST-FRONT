@@ -4,6 +4,7 @@ import { Utilisateur } from '../../model/utilisateur.model';
 import { UtilisateurService } from '../../service/utilisateur.service';
 import {NgIf} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {tap} from 'rxjs';
 
 @Component({
   selector: 'app-user-form',
@@ -33,6 +34,7 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUser() {
-    alert('User updated');
+    this.userService.update_utilisateur(this.user);
+    alert(this.user.username);
   }
 }

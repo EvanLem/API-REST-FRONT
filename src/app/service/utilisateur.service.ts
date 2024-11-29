@@ -28,8 +28,16 @@ export class UtilisateurService {
   }
 
   update_utilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.put<Utilisateur>(`${this.API_URL}/${this.API_ENTITY_NAME}/${utilisateur.id}`, utilisateur);
+    const url = `${this.API_URL}/${this.API_ENTITY_NAME}/${utilisateur.id}`;
+
+    console.log('Request URL:', url);
+    console.log('Request Body:', JSON.stringify(utilisateur));
+
+    return this.http.put<Utilisateur>(url, utilisateur);
+    // Tout semble OK, mais le back ne reçoit pas de requête PUT, le problème vient
+    // donc sûrement d'ici, peut-être des arguments passés à put et de leur format
   }
+
 
   delete_utilisateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${this.API_ENTITY_NAME}/${id}`);
