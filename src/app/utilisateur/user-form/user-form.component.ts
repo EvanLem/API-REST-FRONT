@@ -1,8 +1,9 @@
-import {Component, Inject, Input, numberAttribute, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, numberAttribute, OnInit, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Utilisateur } from '../model/utilisateur.model';
-import { UtilisateurService } from '../service/utilisateur.service';
+import { Utilisateur } from '../../model/utilisateur.model';
+import { UtilisateurService } from '../../service/utilisateur.service';
 import {NgIf} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -15,13 +16,13 @@ import {NgIf} from '@angular/common';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  @Input() showForm!: boolean;
-  @Input() id!: number;
+  id!: number;
   user!: Utilisateur;
 
-  constructor(private readonly userService: UtilisateurService) {}
+  constructor(private readonly userService: UtilisateurService, private route:ActivatedRoute) {}
 
   ngOnInit() {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.getUser();
   }
 
