@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -84,7 +85,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets"
               }
             ],
             "styles": [
