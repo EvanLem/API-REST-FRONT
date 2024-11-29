@@ -1,1 +1,14 @@
 <p>user-form works!</p>
+<div *ngIf="showForm">
+  <form (submit)="updateUser()">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required />
+    <label for="prenom">Prenom :</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="user.prenom" required />
+    <label for="mail">Mail :</label>
+    <input type="text" id="mail" name="mail" [(ngModel)]="user.mail" required />
+    <label for="username">Username :</label>
+    <input type="text" id="username" name="username" [(ngModel)]="user.username" required />
+    <button type="submit">Submit</button>
+  </form>
+</div>

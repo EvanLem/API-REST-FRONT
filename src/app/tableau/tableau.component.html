@@ -1,3 +1,7 @@
+<div>
+  <app-user-form [showForm]="showForm" [id]="selectedUserId"></app-user-form>
+</div>
+
 <table mat-table [dataSource]="users">
   <!-- Name Column -->
   <ng-container matColumnDef="nom">
@@ -24,5 +28,6 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="rowClick(row)"></tr>
 </table>
+

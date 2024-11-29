@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {TableauComponent} from './tableau/tableau.component';
 import {MatTableModule} from '@angular/material/table';
+import {UserFormComponent} from './user-form/user-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule],
+  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule, UserFormComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
