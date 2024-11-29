@@ -1,5 +1,4 @@
-<p>user-form works!</p>
-<div *ngIf="showForm">
+<div>
   <form (submit)="updateUser()">
     <label for="nom">Nom :</label>
     <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required />
