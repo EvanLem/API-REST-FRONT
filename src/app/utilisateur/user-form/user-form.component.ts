@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule}from '@angular/common';
 import {MatFormFieldModule}from '@angular/material/form-field';
@@ -22,14 +22,20 @@ import {Utilisateur}from '../../model/utilisateur.model';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
+  @Input() mode: 'add' | 'update' = 'add'; // en add par défaut
   id!: number;
   user!: Utilisateur;
 
   constructor(private readonly userService: UtilisateurService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.getUser();
+    this.route.data.subscribe(data => {
+      this.mode = data['mode'];
+      if (this.mode === 'update') {
+        this.id = Number(this.route.snapshot.paramMap.get('id'));
+        this.getUser();
+      }
+    });
   }
 
   getUser() {
@@ -41,5 +47,18 @@ export class UserFormComponent implements OnInit {
   updateUser() {
     this.userService.update_utilisateur(this.user).subscribe();
     alert(this.user.username);
+  }
+
+  addUser() {
+    this.userService.create_utilisateur(this.user).subscribe();
+    alert('User added: ' + this.user.username);
+  }
+
+  onSubmit() {
+    if (this.mode === 'update') {
+      this.updateUser();
+    } else {
+      this.addUser();
+    }
   }
 }

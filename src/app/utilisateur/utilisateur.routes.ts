@@ -7,7 +7,13 @@ const DATA_ROUTES: Routes = [
   },
   {
     path: 'edit/:id',
-    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent)
+    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent),
+    data: {mode: 'update'}
+  },
+  {
+    path: 'add',
+    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent),
+    data: {mode: 'add'}
   }
 ];
 

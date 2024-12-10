@@ -1,9 +1,12 @@
 <div class="table-container">
+  <button mat-raised-button routerLink="/utilisateur/add" class="add-button">
+    Ajouter utilisateur
+  </button>
   <mat-form-field appearance="fill">
     <mat-label>Filtrer</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher">
   </mat-form-field>
-  
+
   <table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="nom">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>

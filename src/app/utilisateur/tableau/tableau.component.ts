@@ -8,6 +8,7 @@ import {CommonModule} from '@angular/common';
 import {Utilisateur}from '../../model/utilisateur.model';
 import {UtilisateurService}from '../../service/utilisateur.service';
 import {RouterLink, RouterLinkActive}from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-tableau',
@@ -20,7 +21,8 @@ import {RouterLink, RouterLinkActive}from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatButtonModule
   ],
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.css']

@@ -8,5 +8,9 @@ export const routes: Routes = [
   {
     path: 'utilisateur',
     loadChildren: () => import('./utilisateur/utilisateur.routes').then(m => m.DATA_ROUTES)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.routes').then(m => m.DATA_ROUTES)
   }
 ];
