@@ -24,6 +24,12 @@
         <input matInput type="text" id="username" name="username" [(ngModel)]="user.username" required />
       </mat-form-field>
     </div>
+    <div class="form-field">
+      <label for="password">Password</label>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" id="password" name="password" [(ngModel)]="user.password" required />
+      </mat-form-field>
+    </div>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>
 </div>

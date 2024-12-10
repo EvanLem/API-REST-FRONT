@@ -1,9 +1,9 @@
 mat-toolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 5px;
 }
 
 mat-toolbar span {
