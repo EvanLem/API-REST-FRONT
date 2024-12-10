@@ -1,40 +1,22 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {CommonModule} from '@angular/common';
-import {Utilisateur}from '../../model/utilisateur.model';
-import {UtilisateurService}from '../../service/utilisateur.service';
-import {RouterLink, RouterLinkActive}from '@angular/router';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Utilisateur } from '../../model/utilisateur.model';
+import { UtilisateurService } from '../../service/utilisateur.service';
 
 @Component({
   selector: 'app-tableau',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterLink,
-    RouterLinkActive
-  ],
+  imports: [CommonModule],
   templateUrl: './tableau.component.html',
-  styleUrls: ['./tableau.component.css']
+  styleUrls: ['./tableau.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TableauComponent implements OnInit {
-  users!: MatTableDataSource<Utilisateur>;
-  columnsToDisplay = ['nom', 'prenom', 'mail', 'username'];
+  users: Utilisateur[] = [];
+  filteredUsers: Utilisateur[] = [];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(
-    private readonly userService: UtilisateurService,
-  ) {}
+  constructor(private readonly userService: UtilisateurService, private router: Router) {}
 
   ngOnInit() {
     this.fetchUsers();
@@ -42,14 +24,38 @@ export class TableauComponent implements OnInit {
 
   fetchUsers() {
     this.userService.get_utilisateurs().subscribe(data => {
-      this.users = new MatTableDataSource(data);
-      this.users.paginator = this.paginator;
-      this.users.sort = this.sort;
+      this.users = data;
+      this.filteredUsers = data;
     });
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.users.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredUsers = this.users.filter(user =>
+      user.nom.toLowerCase().includes(filterValue) ||
+      user.prenom.toLowerCase().includes(filterValue) ||
+      user.mail.toLowerCase().includes(filterValue) ||
+      user.username.toLowerCase().includes(filterValue)
+    );
+  }
+
+  sortData(column: keyof Utilisateur) {
+    const sorted = [...this.filteredUsers].sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return aValue.localeCompare(bValue);
+      } else if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return aValue - bValue;
+      } else {
+        return 0;
+      }
+    });
+    this.filteredUsers = sorted;
+  }
+
+  navigateToEdit(id: number) {
+    this.router.navigate([`/utilisateur/edit/${id}`]);
   }
 }
