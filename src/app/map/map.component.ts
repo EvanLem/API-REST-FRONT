@@ -2,14 +2,10 @@ import { AfterViewInit, Component } from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from '../service/marker.service';
 
-const iconRetinaUrl = 'assets/marker-icon-2x.png';
-const iconUrl = 'assets/marker-icon.png';
-const shadowUrl = 'assets/marker-shadow.png';
+const iconUrl = 'assets/location.png';
 const iconDefault = L.icon({
-  iconRetinaUrl,
   iconUrl,
-  shadowUrl,
-  iconSize: [25, 41],
+  iconSize: [40, 60],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   tooltipAnchor: [16, -28],
@@ -22,7 +18,7 @@ L.Marker.prototype.options.icon = iconDefault;
   standalone: true,
   imports: [],
   templateUrl: './map.component.html',
-  styleUrl: './map.component.css'
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;

@@ -16,11 +16,11 @@ export class JeuxService {
   constructor(private readonly http: HttpClient, private readonly toastrService: ToastrService) { }
 
   create_jeu(jeux: Jeux): Observable<Jeux> {
-    return this.http.post<Jeux>(`${this.API_URL}/${this.API_ENTITY_NAME}/`, jeux);
+    return this.http.post<Jeux>(`${this.API_URL}/${this.API_ENTITY_NAME}`, jeux);
   }
 
   get_jeux(): Observable<Jeux[]> {
-    return this.http.get<Jeux[]>(`${this.API_URL}/${this.API_ENTITY_NAME}/`);
+    return this.http.get<Jeux[]>(`${this.API_URL}/${this.API_ENTITY_NAME}`);
   }
 
   get_jeu(id: number): Observable<Jeux> {
