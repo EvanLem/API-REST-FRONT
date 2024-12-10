@@ -6,14 +6,12 @@ const DATA_ROUTES: Routes = [
     loadComponent: () => import('./tableau/tableau.component').then(m => m.TableauComponent)
   },
   {
-    path: 'edit/:id',
-    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent),
-    data: {mode: 'update'}
+    path: ':mode/:id',
+    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent)
   },
   {
-    path: 'add',
-    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent),
-    data: {mode: 'add'}
+    path: ':mode',
+    loadComponent: () => import('./user-form/user-form.component').then(m => m.UserFormComponent)
   }
 ];
 

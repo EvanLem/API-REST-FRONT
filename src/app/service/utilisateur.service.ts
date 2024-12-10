@@ -16,7 +16,7 @@ export class UtilisateurService {
   constructor(private readonly http: HttpClient, private readonly toastrService: ToastrService) { }
 
   create_utilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.API_URL}/${this.API_ENTITY_NAME}/`, utilisateur);
+    return this.http.post<Utilisateur>(`${this.API_URL}/${this.API_ENTITY_NAME}`, utilisateur);
   }
 
   get_utilisateurs(): Observable<Utilisateur[]> {

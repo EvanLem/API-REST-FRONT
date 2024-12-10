@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { Utilisateur } from '../../model/utilisateur.model';
 import { UtilisateurService } from '../../service/utilisateur.service';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-tableau',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, RouterLink],
   templateUrl: './tableau.component.html',
   styleUrls: ['./tableau.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -56,6 +57,6 @@ export class TableauComponent implements OnInit {
   }
 
   navigateToEdit(id: number) {
-    this.router.navigate([`/utilisateur/edit/${id}`]);
+    this.router.navigate([`/utilisateur/update/${id}`]);
   }
 }
