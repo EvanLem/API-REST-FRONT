@@ -4,6 +4,9 @@ import { Utilisateur } from '../../model/utilisateur.model';
 import { UtilisateurService } from '../../service/utilisateur.service';
 import {NgIf} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import {tap} from 'rxjs';
 
 @Component({
@@ -11,7 +14,10 @@ import {tap} from 'rxjs';
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
@@ -20,7 +26,7 @@ export class UserFormComponent implements OnInit {
   id!: number;
   user!: Utilisateur;
 
-  constructor(private readonly userService: UtilisateurService, private route:ActivatedRoute) {}
+  constructor(private readonly userService: UtilisateurService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
