@@ -1,35 +1,22 @@
 <div class="table-container">
-  <button mat-raised-button routerLink="/utilisateur/add" class="add-button">
-    Ajouter utilisateur
-  </button>
-  <mat-form-field appearance="fill">
-    <mat-label>Filtrer</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher">
-  </mat-form-field>
+  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
-  <table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-      <td mat-cell *matCellDef="let user"> {{user.nom}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="prenom">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </th>
-      <td mat-cell *matCellDef="let user"> {{user.prenom}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="mail">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mail </th>
-      <td mat-cell *matCellDef="let user"> {{user.mail}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
-      <td mat-cell *matCellDef="let user"> {{user.username}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" [routerLink]="['/utilisateur/edit/', row.id]" routerLinkActive="active"></tr>
+  <table class="custom-table">
+    <thead>
+    <tr>
+      <th (click)="sortData('nom')">Nom</th>
+      <th (click)="sortData('prenom')">Prenom</th>
+      <th (click)="sortData('mail')">Mail</th>
+      <th (click)="sortData('username')">Username</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of filteredUsers" (click)="navigateToEdit(user.id)">
+      <td>{{user.nom}}</td>
+      <td>{{user.prenom}}</td>
+      <td>{{user.mail}}</td>
+      <td>{{user.username}}</td>
+    </tr>
+    </tbody>
   </table>
-
 </div>
