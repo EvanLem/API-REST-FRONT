@@ -57,6 +57,6 @@ export class TableauComponent implements OnInit {
   }
 
   navigateToEdit(id: number) {
-    this.router.navigate([`/utilisateur/edit/${id}`]);
+    this.router.navigate([`/utilisateur/update/${id}`]);
   }
 }

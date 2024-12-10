@@ -30,10 +30,20 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.mode = data['mode'];
+      this.mode = this.route.snapshot.paramMap.get('mode') as 'add' | 'update';
       if (this.mode === 'update') {
         this.id = Number(this.route.snapshot.paramMap.get('id'));
         this.getUser();
+      }
+      else {
+        this.user = {
+          id: 0,
+          nom: '',
+          prenom: '',
+          mail: '',
+          username: '',
+          password: ''
+        }
       }
     });
   }
@@ -51,7 +61,7 @@ export class UserFormComponent implements OnInit {
 
   addUser() {
     this.userService.create_utilisateur(this.user).subscribe();
-    alert('User added: ' + this.user.username);
+    console.log(this.user);
   }
 
   onSubmit() {
@@ -59,7 +69,6 @@ export class UserFormComponent implements OnInit {
       this.updateUser();
     } else {
       this.addUser();
-      alert("la con de ta mère")
     }
   }
 }
