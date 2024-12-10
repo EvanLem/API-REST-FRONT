@@ -4,16 +4,16 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {CommonModule} from '@angular/common'; 
-import {Utilisateur} from '../../model/utilisateur.model';
-import {UtilisateurService} from '../../service/utilisateur.service';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {Utilisateur}from '../../model/utilisateur.model';
+import {UtilisateurService}from '../../service/utilisateur.service';
+import {RouterLink, RouterLinkActive}from '@angular/router';
 
 @Component({
   selector: 'app-tableau',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,

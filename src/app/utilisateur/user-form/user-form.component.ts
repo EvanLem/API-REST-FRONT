@@ -1,22 +1,21 @@
-import {Component, EventEmitter, Inject, Input, numberAttribute, OnInit, Output} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Utilisateur } from '../../model/utilisateur.model';
-import { UtilisateurService } from '../../service/utilisateur.service';
-import {NgIf} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import {tap} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {CommonModule}from '@angular/common';
+import {MatFormFieldModule}from '@angular/material/form-field';
+import {MatInputModule}from '@angular/material/input';
+import {MatButtonModule}from '@angular/material/button';
+import {ActivatedRoute}from '@angular/router';
+import {UtilisateurService}from '../../service/utilisateur.service';
+import {Utilisateur}from '../../model/utilisateur.model';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf,
-    MatInputModule,
+    CommonModule,
     MatFormFieldModule,
+    MatInputModule,
     MatButtonModule
   ],
   templateUrl: './user-form.component.html',
