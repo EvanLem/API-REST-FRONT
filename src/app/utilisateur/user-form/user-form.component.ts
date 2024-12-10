@@ -59,6 +59,7 @@ export class UserFormComponent implements OnInit {
       this.updateUser();
     } else {
       this.addUser();
+      alert("la con de ta mère")
     }
   }
 }

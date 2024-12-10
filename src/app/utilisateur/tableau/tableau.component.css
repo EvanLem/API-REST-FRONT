@@ -38,3 +38,7 @@
   background-color: #bbdefb;
   cursor: pointer;
 }
+
+.add-button {
+  margin-bottom: 10px;
+}
