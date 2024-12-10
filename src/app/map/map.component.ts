@@ -5,7 +5,7 @@ import { MarkerService } from '../service/marker.service';
 const iconUrl = 'assets/location.png';
 const iconDefault = L.icon({
   iconUrl,
-  iconSize: [40, 60],
+  iconSize: [25, 40],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   tooltipAnchor: [16, -28],
@@ -33,7 +33,7 @@ export class MapComponent implements AfterViewInit {
   private initMap(): void {
     this.map = L.map('map', {
       center: [47.4031748023, 0.6894137512],
-      zoom: 11
+      zoom: 13
     });
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,

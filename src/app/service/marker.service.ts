@@ -19,7 +19,13 @@ export class MarkerService {
         const [latitude, longitude] = c.point_geo.split(',').map((coord: string) => parseFloat(coord.trim()));
         if (!isNaN(latitude) && !isNaN(longitude)) {
           const marker = L.marker([latitude, longitude]);
-          marker.bindPopup(`<b>${c.nom}</b><br>${c.description}<br><b>Nombre de place:</b> ${c.quantite}`);
+          const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          marker.bindPopup(`
+            <b>${c.nom}</b><br>
+            ${c.description}<br>
+            <b>Nombre de place:</b> ${c.quantite}<br>
+            <a href="${googleMapsLink}" target="_blank">Voir sur Google Maps</a>
+          `);
           marker.addTo(map);
         }
       }
