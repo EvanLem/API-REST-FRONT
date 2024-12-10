@@ -7,7 +7,5 @@ export class PopUpService {
   constructor() { }
 
   makePopup(data: any): string {
-    return `` +
-      `<div>AirDejeu POPUP</div>`
-  }
+    return ``}
 }
