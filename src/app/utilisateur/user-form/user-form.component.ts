@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.update_utilisateur(this.user);
+    this.userService.update_utilisateur(this.user).subscribe();
     alert(this.user.username);
   }
 }
