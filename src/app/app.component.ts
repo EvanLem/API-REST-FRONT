@@ -7,11 +7,13 @@ import {MatTableModule} from '@angular/material/table';
 import {UserFormComponent} from './utilisateur/user-form/user-form.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule, UserFormComponent, MatToolbarModule, MatButtonModule, RouterLink],
+  imports: [RouterOutlet, FormsModule, HttpClientModule, TableauComponent, MatTableModule, UserFormComponent, MatToolbarModule, MatButtonModule, RouterLink, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
