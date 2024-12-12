@@ -2,10 +2,10 @@ import { AfterViewInit, Component } from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from '../service/marker.service';
 
-const iconUrl = 'assets/location.png';
+const iconUrl = 'assets/ping.png';
 const iconDefault = L.icon({
   iconUrl,
-  iconSize: [25, 40],
+  iconSize: [25, 27],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   tooltipAnchor: [16, -28],
