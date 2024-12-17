@@ -1,4 +1,3 @@
-<h1>Formulaire Réservation</h1>
 <div>
   <p *ngIf="reservation.jeux && reservation.utilisateur">
     {{ "Réservation du " + reservation.jeux.nom + " par " + reservation.utilisateur.username }}
@@ -15,7 +14,7 @@
 
     <!-- Champ 'Jeux' conditionnellement affiché lorsque 'mode' est 'add' -->
     <div *ngIf="mode === 'add'" class="form-field">
-      <label for="jeu">Jeux: </label>
+      <label for="jeu">Aire de jeu: </label>
       <select name="jeu" id="jeu" [(ngModel)]="reservation.jeuxId" required>
         <option *ngFor="let jeu of jeux" [value]="jeu?.id">{{ jeu?.nom }}</option>
       </select>
@@ -35,9 +34,9 @@
       mat-raised-button
       color="primary"
       (click)="supprimerReservation()">
-      Supprimer le jeu
+      Supprimer l'aire de jeu
     </button>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit">Ajouter la réservation</button>
   </form>
 </div>
 

@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Reservation} from '../../model/reservation.model';
 import {ReservationService} from '../../service/reservation.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {JeuxService} from '../../service/jeux.service';
@@ -9,11 +9,12 @@ import {MatFormField} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Utilisateur} from '../../model/utilisateur.model';
 import {ReservationDataService} from '../../service/reservationData';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-reservation-tableau',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, RouterLink],
   templateUrl: './reservation-tableau.component.html',
   styleUrl: './reservation-tableau.component.css',
   encapsulation: ViewEncapsulation.None
