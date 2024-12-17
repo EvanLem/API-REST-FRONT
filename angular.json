@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "api-rest-front": {
+    "projet-curd": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/api-rest-front",
+            "outputPath": "dist/projet-curd",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -21,15 +21,12 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": [
-              "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -62,14 +59,14 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "api-rest-front:build:production"
+              "buildTarget": "projet-curd:build:production"
             },
             "development": {
-              "buildTarget": "api-rest-front:build:development"
+              "buildTarget": "projet-curd:build:development"
             }
           },
           "defaultConfiguration": "development",
-          "options": {
+          "options" : {
             "proxyConfig": "proxy.conf.json"
           }
         },
@@ -85,8 +82,6 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -100,8 +95,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "8a78a372-c246-4717-8a9b-09b32a99a67e"
   }
 }

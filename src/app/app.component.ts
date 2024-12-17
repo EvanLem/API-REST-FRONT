@@ -1,38 +1,32 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TableauComponent } from './utilisateur/tableau/tableau.component';
-import { MatTableModule } from '@angular/material/table';
-import { UserFormComponent } from './utilisateur/user-form/user-form.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { CommonModule } from '@angular/common';
+import {GameComponent} from './game/game/game.component';
+import {MatTableModule} from '@angular/material/table';
+import {GameFormComponent} from './game/game-form/game-form.component';
+
+import {UserComponent} from './user/user/user.component';
 
 @Component({
   selector: 'app-root',
+  templateUrl: './app.component.html',
   standalone: true,
   imports: [
-    CommonModule, // Use CommonModule instead of BrowserModule
+    UserComponent,
     RouterOutlet,
+    RouterLink,
     FormsModule,
     HttpClientModule,
-    TableauComponent,
-    MatTableModule,
-    UserFormComponent,
-    MatToolbarModule,
-    MatButtonModule,
-    RouterLink,
-    HeaderComponent,
-    FooterComponent,
+    GameComponent,
+    GameFormComponent,
+    MatTableModule
   ],
-  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'api-rest-front';
+  title = 'projet-curd';
+
   id: string = '';
 
   constructor(private http: HttpClient) {}
@@ -51,5 +45,37 @@ export class AppComponent {
       });
   }
 
-  protected readonly TableauComponent = TableauComponent;
+  protected readonly TableauComponent = GameComponent;
+
+
 }
+
+
+
+/*
+import {Component, OnInit} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import {UserService} from './service/user.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent implements OnInit {
+  title = 'projet-curd';
+
+  constructor(private userService: UserService)
+  {}
+
+  ngOnInit() {
+    this.userService.getUsers()
+      .subscribe(data => {
+        console.log(data)
+      })
+  }
+}
+
+ */

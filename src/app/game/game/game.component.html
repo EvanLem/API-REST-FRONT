@@ -1,0 +1,23 @@
+<h1>Consultation des jeux</h1>
+<div class="table-container">
+  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
+
+  <table class="custom-table">
+    <thead>
+    <tr>
+      <th (click)="sortData('nom')">Nom</th>
+      <th (click)="sortData('quantite')">Quantite</th>
+      <th (click)="sortData('description')">Description</th>
+      <th (click)="sortData('point_geo')">Point géographique</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let jeu of filteredJeux" (click)="navigateToEdit(jeu.id)">
+      <td>{{jeu.nom}}</td>
+      <td>{{jeu.quantite}}</td>
+      <td>{{jeu.description}}</td>
+      <td>{{jeu.point_geo}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

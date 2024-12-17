@@ -1,0 +1,52 @@
+<section>
+  <h1>TEST User</h1>
+  <ul>
+    <li *ngFor="let user of users">User : {{ user.nom }} {{ user.prenom }} - Username : {{ user.username }} </li>
+  </ul>
+</section>
+
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<table mat-table [dataSource]="users">
+  <!-- Name Column -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let user"> {{user.nom}} </td>
+  </ng-container>
+
+  <!-- Prenom Column -->
+  <ng-container matColumnDef="prenom">
+    <th mat-header-cell *matHeaderCellDef> Prenom </th>
+    <td mat-cell *matCellDef="let user"> {{user.prenom}} </td>
+  </ng-container>
+
+  <!-- Mail Column -->
+  <ng-container matColumnDef="mail">
+    <th mat-header-cell *matHeaderCellDef> Mail </th>
+    <td mat-cell *matCellDef="let user"> {{user.mail}} </td>
+  </ng-container>
+
+  <!-- Username Column -->
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef> Username </th>
+    <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+  </ng-container>
+</table>
+
