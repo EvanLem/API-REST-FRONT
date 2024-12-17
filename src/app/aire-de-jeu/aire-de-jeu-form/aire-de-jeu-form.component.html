@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Formulairee pour les jeux</h2>
+  <form (submit)="onSubmit()" class="game-form">
+    <div class="form-field">
+      <label for="nom">Nom :</label>
+      <mat-form-field appearance="fill">
+          <input type="text" id="nom" [(ngModel)]="jeu.nom" name="nom" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <label for="quantite">Quantite :</label>
+      <mat-form-field appearance="fill">
+          <input type="number" id="quantite" [(ngModel)]="jeu.quantite" name="quantite" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <label for="point_geo">Point géographique :</label>
+      <mat-form-field appearance="fill">
+          <input type="text" id="point_geo" [(ngModel)]="jeu.point_geo" name="point_geo" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <label for="description">Description :</label>
+      <mat-form-field appearance="fill">
+          <textarea type="text" id="description" [(ngModel)]="jeu.description" name="description" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <button
+      *ngIf="mode != 'add'"
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="supprimerJeu()">
+      Supprimer le jeu
+    </button>
+
+    <button mat-raised-button color="primary"  type="submit">{{ mode === 'add' ? 'Ajouter un jeu' : 'Mettre à jour le jeu' }}</button>
+  </form>
+</div>

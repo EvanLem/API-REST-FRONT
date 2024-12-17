@@ -1,0 +1,42 @@
+<h1>Formulaire Réservation</h1>
+<div>
+  <p *ngIf="reservation.jeux && reservation.utilisateur">
+    {{ "Réservation du " + reservation.jeux.nom + " par " + reservation.utilisateur.username }}
+  </p>
+  <p *ngIf="!reservation.jeux || !reservation.jeux"></p>
+
+  <form (submit)="onSubmit()" class="reservation-form">
+    <div class="form-field">
+      <label for="reservation">Réservation: </label>
+      <mat-form-field appearance="fill">
+        <input matInput type="number" id="reservation" name="reservation" [(ngModel)]="reservation.reservation" required />
+      </mat-form-field>
+    </div>
+    <button
+      *ngIf="mode != 'add'"
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="supprimerReservation()">
+      Supprimer le jeu
+    </button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>
+
+
+<!--
+<div class="form-field">
+      <label for="jeuxId">Id jeu: </label>
+      <mat-form-field appearance="fill">
+        <input matInput type="number" id="jeuxId" name="jeuxId" [(ngModel)]="reservation.jeuxId" required />
+      </mat-form-field>
+    </div>
+
+<div class="form-field">
+      <label for="utilisateurId">Id utilisateur: </label>
+      <mat-form-field appearance="fill">
+        <input matInput type="number" id="utilisateurId" name="utilisateurId" [(ngModel)]="reservation.utilisateurId" required />
+      </mat-form-field>
+    </div>
+-->

@@ -49,7 +49,7 @@ export class UserFormComponent implements OnInit {
   }
 
   getUser() {
-    this.userService.get_utilisateur(this.id).subscribe(data => {
+    this.userService.get_utilisateurs_id(this.id).subscribe(data => {
       this.user = data;
     });
   }

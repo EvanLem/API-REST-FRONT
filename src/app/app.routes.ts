@@ -12,5 +12,9 @@ export const routes: Routes = [
   {
     path: 'map',
     loadChildren: () => import('./map/map.routes').then(m => m.DATA_ROUTES)
+  },
+  {
+    path:'reservation',
+    loadChildren:() => import('./reservation/reservation.routes').then(m => m.DATA_ROUTES)
   }
 ];

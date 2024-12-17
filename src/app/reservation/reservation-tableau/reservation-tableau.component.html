@@ -1,0 +1,22 @@
+<h1>Réservation</h1>
+<div class="table-container">
+  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
+
+  <table class="custom-table">
+    <thead>
+    <tr>
+      <th (click)="sortData('reservation')">Réservation</th>
+      <th (click)="sortData('utilisateur')">Nom utilisateur</th>
+      <th (click)="sortData('jeux')">Jeu</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reservation of filteredReservations" (click)="navigateToEdit(reservation.utilisateurId, reservation.jeuxId)">
+      <td>{{reservation.reservation}}</td>
+      <td>{{ reservation.utilisateur?.username || 'Chargement...' }}</td>
+      <td>{{ reservation.jeux?.nom || 'Chargement...' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

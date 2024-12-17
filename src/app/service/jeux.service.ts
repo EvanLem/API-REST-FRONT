@@ -23,7 +23,7 @@ export class JeuxService {
     return this.http.get<Jeux[]>(`${this.API_URL}/${this.API_ENTITY_NAME}`);
   }
 
-  get_jeu(id: number): Observable<Jeux> {
+  get_jeux_id(id: number): Observable<Jeux> {
     return this.http.get<Jeux>(`${this.API_URL}/${this.API_ENTITY_NAME}/${id}`);
   }
 
