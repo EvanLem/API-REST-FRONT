@@ -22,7 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './aire-de-jeu-form.component.css'
 })
 export class AireDeJeuFormComponent {
-  mode: 'add' | 'update' = 'add';
+  @Input() mode: 'add' | 'update' = 'add';
   id!: number;
   jeu!: Jeux;
 
@@ -90,7 +90,7 @@ export class AireDeJeuFormComponent {
         }
       });
     } catch (error) {
-      console.error("Erreur lors de la supression de l'aire de jeu", error);
+      console.error("Erreur lors de la suppression de l'aire de jeu", error);
     }
   }
 

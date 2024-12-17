@@ -1,7 +1,6 @@
-<h1>Formulaire Réservation</h1>
 <div>
   <p *ngIf="reservation.jeux && reservation.utilisateur">
-    {{ "Réservation du " + reservation.jeux.nom + " par " + reservation.utilisateur.username }}
+    {{ "Réservation du " + reservation.jeux.nom + " dans l'aire de jeu " + reservation.jeux.description + " par " + reservation.utilisateur.username }}
   </p>
   <p *ngIf="!reservation.jeux || !reservation.jeux"></p>
 
@@ -18,9 +17,9 @@
       mat-raised-button
       color="primary"
       (click)="supprimerReservation()">
-      Supprimer le jeu
+      Supprimer la réservation
     </button>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit">Valider</button>
   </form>
 </div>
 

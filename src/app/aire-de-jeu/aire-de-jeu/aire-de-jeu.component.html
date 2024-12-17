@@ -1,6 +1,9 @@
-<h1>Consultation des jeux</h1>
 <div class="table-container">
   <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
+
+  <button mat-raised-button class="add-button" routerLink="/aire-de-jeu/add">
+    Ajouter une aire de jeu
+  </button>
 
   <table class="custom-table">
     <thead>

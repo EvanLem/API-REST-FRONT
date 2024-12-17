@@ -17,25 +17,17 @@ import { MatPaginatorModule, MatPaginator, PageEvent } from '@angular/material/p
 export class TableauComponent implements OnInit {
   users: Utilisateur[] = [];
   filteredUsers: Utilisateur[] = [];
-  paginatedUsers: Utilisateur[] = [];
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 20];
-  pageIndex = 0;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private readonly userService: UtilisateurService, private router: Router) {}
 
   ngOnInit() {
     this.fetchUsers();
-    console.log(this.pageIndex, this.pageSize, this.paginatedUsers);
   }
 
   fetchUsers() {
     this.userService.get_utilisateurs().subscribe(data => {
       this.users = data;
       this.filteredUsers = data;
-      this.updatePaginatedUsers();
     });
   }
 
@@ -48,19 +40,6 @@ export class TableauComponent implements OnInit {
       user.username.toLowerCase().includes(filterValue) ||
       user.password.toLowerCase().includes(filterValue)
     );
-    this.updatePaginatedUsers();
-  }
-
-  updatePaginatedUsers() {
-    const startIndex = this.pageIndex * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.paginatedUsers = this.filteredUsers.slice(startIndex, endIndex);
-  }
-
-  handlePageEvent(event: PageEvent) {
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
-    this.updatePaginatedUsers();
   }
 
   sortData(column: keyof Utilisateur) {
@@ -77,7 +56,6 @@ export class TableauComponent implements OnInit {
       }
     });
     this.filteredUsers = sorted;
-    this.updatePaginatedUsers();
   }
 
   navigateToEdit(id: number) {

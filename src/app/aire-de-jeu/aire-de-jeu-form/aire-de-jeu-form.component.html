@@ -1,43 +1,34 @@
-<div class="container">
-  <h2>Formulairee pour les jeux</h2>
-  <form (submit)="onSubmit()" class="game-form">
+<div>
+  <form (submit)="onSubmit()" class="jeu-form">
     <div class="form-field">
       <label for="nom">Nom :</label>
       <mat-form-field appearance="fill">
-          <input type="text" id="nom" [(ngModel)]="jeu.nom" name="nom" required />
+        <input matInput type="text" id="nom" name="nom" [(ngModel)]="jeu.nom" required />
       </mat-form-field>
     </div>
-
     <div class="form-field">
       <label for="quantite">Quantite :</label>
       <mat-form-field appearance="fill">
-          <input type="number" id="quantite" [(ngModel)]="jeu.quantite" name="quantite" required />
+        <input matInput type="number" id="quantite" name="quantite" [(ngModel)]="jeu.quantite" required />
       </mat-form-field>
     </div>
-
     <div class="form-field">
-      <label for="point_geo">Point géographique :</label>
+      <label for="point_geo">Coordonnées géographique (séparé par une virgule) :</label>
       <mat-form-field appearance="fill">
-          <input type="text" id="point_geo" [(ngModel)]="jeu.point_geo" name="point_geo" required />
+        <input matInput type="text" id="point_geo" name="point_geo" [(ngModel)]="jeu.point_geo" required />
       </mat-form-field>
     </div>
-
     <div class="form-field">
       <label for="description">Description :</label>
       <mat-form-field appearance="fill">
-          <textarea type="text" id="description" [(ngModel)]="jeu.description" name="description" required></textarea>
+        <textarea matInput id="description" name="description" [(ngModel)]="jeu.description" required></textarea>
       </mat-form-field>
     </div>
-
-    <button
-      *ngIf="mode != 'add'"
-      type="button"
-      mat-raised-button
-      color="primary"
-      (click)="supprimerJeu()">
+    <button *ngIf="mode != 'add'" type="button" mat-raised-button color="primary" (click)="supprimerJeu()">
       Supprimer le jeu
     </button>
-
-    <button mat-raised-button color="primary"  type="submit">{{ mode === 'add' ? 'Ajouter un jeu' : 'Mettre à jour le jeu' }}</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ mode === 'add' ? 'Ajouter un jeu' : 'Mettre à jour le jeu' }}
+    </button>
   </form>
 </div>

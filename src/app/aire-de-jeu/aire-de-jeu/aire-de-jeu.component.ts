@@ -1,15 +1,18 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import { JeuxService } from '../../service/jeux.service';
 import { Jeux } from '../../model/jeux.model'
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-aire-de-jeu',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        RouterLink
+    ],
   templateUrl: './aire-de-jeu.component.html',
   styleUrl: './aire-de-jeu.component.css',
   encapsulation: ViewEncapsulation.None

@@ -4,7 +4,7 @@ import {CommonModule}from '@angular/common';
 import {MatFormFieldModule}from '@angular/material/form-field';
 import {MatInputModule}from '@angular/material/input';
 import {MatButtonModule}from '@angular/material/button';
-import {ActivatedRoute}from '@angular/router';
+import {ActivatedRoute, Router}from '@angular/router';
 import {UtilisateurService}from '../../service/utilisateur.service';
 import {Utilisateur}from '../../model/utilisateur.model';
 
@@ -26,7 +26,7 @@ export class UserFormComponent implements OnInit {
   id!: number;
   user!: Utilisateur;
 
-  constructor(private readonly userService: UtilisateurService, private route: ActivatedRoute) {}
+  constructor(private readonly userService: UtilisateurService, private route: ActivatedRoute, private readonly router: Router) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -55,13 +55,29 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.update_utilisateur(this.user).subscribe();
-    alert(this.user.username);
+    try {
+      this.userService.update_utilisateur(this.user).subscribe({
+        next: () => {
+          alert("Mise à jour de l'utilisateur : " + this.user.username);
+          this.router.navigate(['/utilisateur/data']);
+        }
+      });
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'utilisateur", error);
+    }
   }
 
-  addUser() {
-    this.userService.create_utilisateur(this.user).subscribe();
-    console.log(this.user);
+  addUser(): void {
+    try {
+      this.userService.create_utilisateur(this.user).subscribe({
+        next: () => {
+          alert("Suppression de l'utilisateur");
+          this.router.navigate(['/utilisateur/data']);
+        }
+      });
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'utilisateur", error);
+    }
   }
 
   onSubmit() {
