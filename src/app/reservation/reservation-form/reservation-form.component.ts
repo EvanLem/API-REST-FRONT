@@ -12,7 +12,7 @@ import {JeuxService} from '../../service/jeux.service';
 import { Utilisateur } from '../../model/utilisateur.model';
 import { Jeux } from '../../model/jeux.model';
 import {ReservationDataService} from '../../service/reservationData';
-import {MatOption, MatSelect} from '@angular/material/select';
+import {MatSelect} from '@angular/material/select';
 import {forkJoin} from 'rxjs';
 
 interface playload {
@@ -30,8 +30,6 @@ interface playload {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelect,
-    MatOption
   ],
   templateUrl: './reservation-form.component.html',
   styleUrl: './reservation-form.component.css'

@@ -1,17 +1,13 @@
 <div class="table-container">
   <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
-  <label for="utilisateur">Utilisateur: </label>
-  <select name="utilisateur" id="utilisateur" (change)="filterReservationsByUser($event)">
-    <option value="-1">Tous les utilisateurs</option>
-    <option *ngFor="let user of users" value="{{ user?.id }}">{{user?.nom + " " + user?.prenom}}</option>
-  </select>
-
   <table class="custom-table">
     <thead>
     <tr>
       <th (click)="sortData('reservation')">Réservation</th>
       <th (click)="sortData('utilisateur')">Nom utilisateur</th>
+      <th (click)="sortData('utilisateur')">Prénom</th>
+      <th (click)="sortData('utilisateur')">Nom</th>
       <th (click)="sortData('jeux')">Jeu</th>
     </tr>
     </thead>
@@ -19,6 +15,8 @@
     <tr *ngFor="let reservation of filteredReservations" (click)="navigateToEdit(reservation.utilisateurId, reservation.jeuxId)">
       <td>{{reservation.reservation}}</td>
       <td>{{ reservation.utilisateur?.username || 'Chargement...' }}</td>
+      <td>{{ reservation.utilisateur?.prenom || 'Chargement...' }}</td>
+      <td>{{ reservation.utilisateur?.nom || 'Chargement...' }}</td>
       <td>{{ reservation.jeux?.nom || 'Chargement...' }}</td>
     </tr>
     </tbody>

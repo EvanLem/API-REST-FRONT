@@ -13,7 +13,7 @@ import {ReservationDataService} from '../../service/reservationData';
 @Component({
   selector: 'app-reservation-tableau',
   standalone: true,
-  imports: [CommonModule, MatFormField, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './reservation-tableau.component.html',
   styleUrl: './reservation-tableau.component.css',
   encapsulation: ViewEncapsulation.None
@@ -54,26 +54,14 @@ export class ReservationTableauComponent {
     });
   }
 
-  filterReservationsByUser(event: Event) {
-    this.selectedUserId = Number((event.target as HTMLSelectElement).value);
-
-    if (this.selectedUserId === -1) {
-      // Si "Tous les utilisateurs" est sélectionné
-      this.filteredReservations = this.reservation;
-    } else {
-      // Filtrer les réservations pour l'utilisateur sélectionné
-      this.filteredReservations = this.reservation.filter(
-        res => res.utilisateurId === this.selectedUserId
-      );
-    }
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     this.filteredReservations = this.reservation.filter(reservation =>
-      reservation.reservation ||
-      reservation.utilisateurId ||
-      reservation.jeuxId
+      reservation.reservation.toString().toLowerCase().includes(filterValue) ||
+      reservation.utilisateur?.nom.toLowerCase().includes(filterValue) ||
+      reservation.utilisateur?.prenom.toLowerCase().includes(filterValue) ||
+      reservation.utilisateur?.username.toLowerCase().includes(filterValue) ||
+      reservation.jeux?.nom.toLowerCase().includes(filterValue)
     );
   }
 
