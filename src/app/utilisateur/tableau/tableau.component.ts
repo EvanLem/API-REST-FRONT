@@ -36,7 +36,8 @@ export class TableauComponent implements OnInit {
       user.nom.toLowerCase().includes(filterValue) ||
       user.prenom.toLowerCase().includes(filterValue) ||
       user.mail.toLowerCase().includes(filterValue) ||
-      user.username.toLowerCase().includes(filterValue)
+      user.username.toLowerCase().includes(filterValue) ||
+      user.password.toLowerCase().includes(filterValue)
     );
   }
 

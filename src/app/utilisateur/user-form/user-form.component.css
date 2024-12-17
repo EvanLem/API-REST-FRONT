@@ -1,4 +1,3 @@
-
 .user-form {
   display: flex;
   flex-direction: column;
@@ -15,7 +14,7 @@
 }
 
 .form-field label {
-  width: 120px; 
+  width: 120px;
   margin-right: 16px;
   font-weight: 500;
   color: #333;
