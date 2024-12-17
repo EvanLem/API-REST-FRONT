@@ -6,7 +6,7 @@ const DATA_ROUTES: Routes = [
     loadComponent: () => import('./reservation-tableau/reservation-tableau.component').then(m => m.ReservationTableauComponent)
   },
   {
-    path: 'edit/:utilisateurId/:jeuId',
+    path: 'edit',
     loadComponent: () => import('./reservation-form/reservation-form.component').then(m => m.ReservationFormComponent),
     data: {mode: 'update'}
   },

@@ -3,14 +3,17 @@ import {Reservation} from '../../model/reservation.model';
 import {ReservationService} from '../../service/reservation.service';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {UtilisateurService} from '../../service/utilisateur.service';
 import {JeuxService} from '../../service/jeux.service';
-import {UtilisateurService}from '../../service/utilisateur.service';
-
+import {MatFormField} from '@angular/material/form-field';
+import {ReactiveFormsModule} from '@angular/forms';
+import {Utilisateur} from '../../model/utilisateur.model';
+import {ReservationDataService} from '../../service/reservationData';
 
 @Component({
   selector: 'app-reservation-tableau',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatFormField, ReactiveFormsModule],
   templateUrl: './reservation-tableau.component.html',
   styleUrl: './reservation-tableau.component.css',
   encapsulation: ViewEncapsulation.None
@@ -18,10 +21,13 @@ import {UtilisateurService}from '../../service/utilisateur.service';
 export class ReservationTableauComponent {
   reservation: Reservation[] = [];
   filteredReservations: Reservation[] = [];
+  users: Utilisateur[] = []; // Liste des utilisateurs
+  selectedUserId: number = -1; // Utilisateur sélectionné
 
   constructor(private readonly reservationService: ReservationService,
               private readonly userService: UtilisateurService,
               private readonly gameService: JeuxService,
+              private reservationDataService: ReservationDataService,
               private router: Router) {}
 
   ngOnInit() {
@@ -33,10 +39,12 @@ export class ReservationTableauComponent {
       this.reservation = data;
       this.filteredReservations = data;
 
-      // Enrichir chaque réservation avec les détails utilisateur et jeu
       this.reservation.forEach(res => {
         this.userService.get_utilisateurs_id(res.utilisateurId).subscribe(user => {
           res.utilisateur = user;
+          if (!this.users.find(u => u.id === user.id)) {
+            this.users.push(user); // Ajouter l'utilisateur unique
+          }
         });
 
         this.gameService.get_jeux_id(res.jeuxId).subscribe(game => {
@@ -44,6 +52,20 @@ export class ReservationTableauComponent {
         });
       });
     });
+  }
+
+  filterReservationsByUser(event: Event) {
+    this.selectedUserId = Number((event.target as HTMLSelectElement).value);
+
+    if (this.selectedUserId === -1) {
+      // Si "Tous les utilisateurs" est sélectionné
+      this.filteredReservations = this.reservation;
+    } else {
+      // Filtrer les réservations pour l'utilisateur sélectionné
+      this.filteredReservations = this.reservation.filter(
+        res => res.utilisateurId === this.selectedUserId
+      );
+    }
   }
 
   applyFilter(event: Event) {
@@ -71,7 +93,11 @@ export class ReservationTableauComponent {
 
 
   navigateToEdit(utilisateurId: number, jeuId: number) {
-    this.router.navigate([`/reservation/edit/${utilisateurId}/${jeuId}`]);
+    // Stocker les IDs dans le service
+    this.reservationDataService.setIds(utilisateurId, jeuId);
+
+    // Naviguer vers la route statique
+    this.router.navigate(['/reservation/edit']);
   }
 
 }

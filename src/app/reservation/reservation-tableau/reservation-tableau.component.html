@@ -1,6 +1,12 @@
 <div class="table-container">
   <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
+  <label for="utilisateur">Utilisateur: </label>
+  <select name="utilisateur" id="utilisateur" (change)="filterReservationsByUser($event)">
+    <option value="-1">Tous les utilisateurs</option>
+    <option *ngFor="let user of users" value="{{ user?.id }}">{{user?.nom + " " + user?.prenom}}</option>
+  </select>
+
   <table class="custom-table">
     <thead>
     <tr>

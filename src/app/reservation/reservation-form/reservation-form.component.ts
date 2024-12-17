@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Reservation} from '../../model/reservation.model';
 import {ReservationService} from '../../service/reservation.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,6 +9,11 @@ import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {UtilisateurService} from '../../service/utilisateur.service';
 import {JeuxService} from '../../service/jeux.service';
+import { Utilisateur } from '../../model/utilisateur.model';
+import { Jeux } from '../../model/jeux.model';
+import {ReservationDataService} from '../../service/reservationData';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {forkJoin} from 'rxjs';
 
 interface playload {
   utilisateurId: number,
@@ -24,7 +29,9 @@ interface playload {
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelect,
+    MatOption
   ],
   templateUrl: './reservation-form.component.html',
   styleUrl: './reservation-form.component.css'
@@ -33,11 +40,14 @@ export class ReservationFormComponent {
   mode: 'add' | 'update' = 'add'; // en add par défaut
   utilisateurId!: number;
   jeuId!: number;
+  users!: Utilisateur[];
+  jeux!: Jeux[];
   reservation!: Reservation;
 
   constructor(private readonly reservationService: ReservationService,
               private readonly userService: UtilisateurService,
               private readonly gameService: JeuxService,
+              private reservationDataService: ReservationDataService,
               private route: ActivatedRoute,
               private readonly router: Router) {}
 
@@ -45,8 +55,13 @@ export class ReservationFormComponent {
     this.route.data.subscribe(data => {
       this.mode = data['mode'];
       if (this.mode === 'update') {
-        this.utilisateurId = Number(this.route.snapshot.paramMap.get('utilisateurId'));
-        this.jeuId = Number(this.route.snapshot.paramMap.get('jeuId'));
+        // Récupérer les données via une redirection statique
+        this.utilisateurId = this.reservationDataService.getUtilisateurId();
+        this.jeuId = this.reservationDataService.getJeuId();
+        // Redirige si aucune donnée n'est présente
+        if (!this.jeuId || !this.utilisateurId) {
+          this.router.navigate(['/reservation/data']);
+        }
         this.getReservation();
       }
       else {
@@ -57,10 +72,13 @@ export class ReservationFormComponent {
           jeux: undefined,
           utilisateur: undefined,
         }
+        // On récupère les utilisateurs et les jeux pour la sélection dans le formulaire pour ajout
+        this.fetchData()
       }
     });
   }
 
+  // Pour update
   getReservation() {
     this.reservationService.getBooking_id(this.utilisateurId, this.jeuId).subscribe(data => {
       this.reservation = data;
@@ -70,6 +88,23 @@ export class ReservationFormComponent {
       this.gameService.get_jeux_id(this.reservation.jeuxId).subscribe(game => {
         this.reservation.jeux = game;
       });
+    });
+  }
+
+  // Pour ajouter
+  fetchData() {
+    forkJoin({
+      users: this.userService.get_utilisateurs(),
+      games: this.gameService.get_jeux()
+    }).subscribe({
+      next: (data) => {
+        this.users = data.users;
+        this.jeux = data.games;
+        console.log("TEST", this.users, this.jeux);
+      },
+      error: (error) => {
+        console.error("Erreur lors du chargement des données :", error);
+      }
     });
   }
 

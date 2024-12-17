@@ -1,8 +1,9 @@
+<h1>Formulaire Réservation</h1>
 <div>
   <p *ngIf="reservation.jeux && reservation.utilisateur">
-    {{ "Réservation du " + reservation.jeux.nom + " dans l'aire de jeu " + reservation.jeux.description + " par " + reservation.utilisateur.username }}
+    {{ "Réservation du " + reservation.jeux.nom + " par " + reservation.utilisateur.username }}
   </p>
-  <p *ngIf="!reservation.jeux || !reservation.jeux"></p>
+  <p *ngIf="!reservation.jeux || !reservation.utilisateur"></p>
 
   <form (submit)="onSubmit()" class="reservation-form">
     <div class="form-field">
@@ -11,31 +12,32 @@
         <input matInput type="number" id="reservation" name="reservation" [(ngModel)]="reservation.reservation" required />
       </mat-form-field>
     </div>
+
+    <!-- Champ 'Jeux' conditionnellement affiché lorsque 'mode' est 'add' -->
+    <div *ngIf="mode === 'add'" class="form-field">
+      <label for="jeu">Jeux: </label>
+      <select name="jeu" id="jeu" [(ngModel)]="reservation.jeuxId" required>
+        <option *ngFor="let jeu of jeux" [value]="jeu?.id">{{ jeu?.nom }}</option>
+      </select>
+    </div>
+
+    <!-- Champ 'Utilisateurs' conditionnellement affiché lorsque 'mode' est 'add' -->
+    <div *ngIf="mode === 'add'" class="form-field">
+      <label for="utilisateur">Utilisateurs: </label>
+      <select name="utilisateur" id="utilisateur" [(ngModel)]="reservation.utilisateurId" required>
+        <option *ngFor="let utilisateur of users" [value]="utilisateur?.id">{{ utilisateur?.nom + " " + utilisateur?.prenom }}</option>
+      </select>
+    </div>
+
     <button
       *ngIf="mode != 'add'"
       type="button"
       mat-raised-button
       color="primary"
       (click)="supprimerReservation()">
-      Supprimer la réservation
+      Supprimer le jeu
     </button>
-    <button mat-raised-button color="primary" type="submit">Valider</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>
 </div>
 
-
-<!--
-<div class="form-field">
-      <label for="jeuxId">Id jeu: </label>
-      <mat-form-field appearance="fill">
-        <input matInput type="number" id="jeuxId" name="jeuxId" [(ngModel)]="reservation.jeuxId" required />
-      </mat-form-field>
-    </div>
-
-<div class="form-field">
-      <label for="utilisateurId">Id utilisateur: </label>
-      <mat-form-field appearance="fill">
-        <input matInput type="number" id="utilisateurId" name="utilisateurId" [(ngModel)]="reservation.utilisateurId" required />
-      </mat-form-field>
-    </div>
--->
