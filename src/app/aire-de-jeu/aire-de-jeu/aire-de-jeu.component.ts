@@ -34,11 +34,11 @@ export class AireDeJeuComponent {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    this.filteredJeux = this.jeux.filter(user =>
-      user.nom.toLowerCase().includes(filterValue) ||
-      user.quantite.valueOf() ||
-      user.description.toLowerCase().includes(filterValue) ||
-      user.point_geo.toLowerCase().includes(filterValue)
+    this.filteredJeux = this.jeux.filter(jeu =>
+      jeu.nom.toLowerCase().includes(filterValue) ||
+      jeu.quantite.toString().includes(filterValue) ||
+      jeu.description.toLowerCase().includes(filterValue) ||
+      jeu.point_geo.toLowerCase().includes(filterValue)
     );
   }
 

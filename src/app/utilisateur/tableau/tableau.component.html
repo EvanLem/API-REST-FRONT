@@ -12,11 +12,11 @@
       <th (click)="sortData('prenom')">Prenom</th>
       <th (click)="sortData('mail')">Mail</th>
       <th (click)="sortData('username')">Username</th>
-      <th (click)="sortData('password')">Username</th>
+      <th (click)="sortData('password')">Password</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of filteredUsers" (click)="navigateToEdit(user.id)">
+    <tr *ngFor="let user of paginatedUsers" (click)="navigateToEdit(user.id)">
       <td>{{user.nom}}</td>
       <td>{{user.prenom}}</td>
       <td>{{user.mail}}</td>
@@ -25,4 +25,10 @@
     </tr>
     </tbody>
   </table>
+
+  <mat-paginator [length]="filteredUsers.length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="handlePageEvent($event)">
+  </mat-paginator>
 </div>
