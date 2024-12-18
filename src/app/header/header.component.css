@@ -7,13 +7,14 @@ mat-toolbar {
 }
 
 mat-toolbar span {
-  color: black;
+  color: white;
   font-size: 24px;
 }
 
 mat-toolbar button {
-  background: yellow;
+  background: #ffff79;
   transition: background 0.25s ease;
+  margin-right: 20px;
 }
 
 mat-toolbar button:hover {
@@ -22,4 +23,12 @@ mat-toolbar button:hover {
 
 .active-link {
   background: red;
+}
+
+.toolbar-title {
+  flex: 1;
+}
+
+.spacer {
+  flex: 1;
 }
