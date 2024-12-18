@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/utilisateur/data',
+    pathMatch: 'full'
+  },
+  {
     path: 'aire-de-jeu',
     loadChildren: () => import('./aire-de-jeu/aire-de-jeu.routes').then(m => m.DATA_ROUTES)
   },
