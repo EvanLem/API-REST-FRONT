@@ -1,6 +1,5 @@
 .table-container {
-  padding: 16px;
-}
+  padding: 16px;}
 
 .filter-input {
   margin-bottom: 16px;
@@ -21,11 +20,12 @@
 .custom-table th, .custom-table td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid white;
 }
 
 .custom-table th {
-  background-color: #3f51b5;
+  background: none;
+  backdrop-filter: blur(20px);
   color: white;
   cursor: pointer;
 }
@@ -43,3 +43,4 @@
 .add-button {
   margin-bottom: 10px;
 }
+

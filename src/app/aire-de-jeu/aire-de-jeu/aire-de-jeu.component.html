@@ -1,9 +1,9 @@
 <div class="table-container">
-  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
-
   <button mat-raised-button class="add-button" routerLink="/aire-de-jeu/add">
     Ajouter une aire de jeu
   </button>
+
+  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
   <table class="custom-table">
     <thead>

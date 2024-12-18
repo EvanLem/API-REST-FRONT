@@ -1,9 +1,10 @@
 <div class="table-container">
-  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
   <button mat-raised-button class="add-button" routerLink="/reservation/add">
     Ajouter une réservation
   </button>
+
+  <input type="text" (keyup)="applyFilter($event)" placeholder="Rechercher" class="filter-input">
 
   <table class="custom-table">
     <thead>
