@@ -87,4 +87,16 @@ export class UserFormComponent implements OnInit {
       this.addUser();
     }
   }
+  supprimerUtilisateur() {
+    try {
+      this.userService.delete_utilisateur(this.user.id).subscribe({
+        next: () => {
+          alert("Suppression de l'utilisateur'");
+          this.router.navigate(['/utilisateur/data']);
+        }
+      });
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'utilisateur", error);
+    }
+  }
 }

@@ -30,7 +30,9 @@
         <input matInput type="text" id="password" name="password" [(ngModel)]="user.password" required />
       </mat-form-field>
     </div>
-
+    <button *ngIf="mode != 'add'" type="button" mat-raised-button color="primary" (click)="supprimerUtilisateur()">
+      Supprimer l'utilisateur
+    </button>
     <button mat-raised-button color="primary" type="submit">
       {{ mode === 'add' ? 'Ajouter un utilisateur' : "Mettre à jour l'utilisateur" }}
     </button>
